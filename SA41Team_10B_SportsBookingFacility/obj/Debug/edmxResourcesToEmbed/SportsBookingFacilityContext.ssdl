@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FacilityBookingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BookingTran">
+    <Key>
+      <PropertyRef Name="FacilityId" />
+      <PropertyRef Name="SlotId" />
+      <PropertyRef Name="IssueDate" />
+    </Key>
+    <Property Name="FacilityId" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="SlotId" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="IssueDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="NRIC" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Custstatus" Type="bit" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="6" />
+    <Property Name="Phoneno" Type="nvarchar" MaxLength="8" />
+    <Property Name="Remarks" Type="nchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facilities">
+    <Key>
+      <PropertyRef Name="FacilityId" />
+    </Key>
+    <Property Name="FacilityId" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Slots">
+    <Key>
+      <PropertyRef Name="SlotId" />
+    </Key>
+    <Property Name="SlotId" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="TimeSlot" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="fk_BookingFacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="BookingTran">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_BookingSlotId">
+    <End Role="Slots" Type="Self.Slots" Multiplicity="1" />
+    <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Slots">
+        <PropertyRef Name="SlotId" />
+      </Principal>
+      <Dependent Role="BookingTran">
+        <PropertyRef Name="SlotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingTran_CustomersID">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="BookingTran">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FacilityBookingModelStoreContainer">
+    <EntitySet Name="BookingTran" EntityType="Self.BookingTran" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facilities" EntityType="Self.Facilities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slots" EntityType="Self.Slots" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_BookingFacilityId" Association="Self.fk_BookingFacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="BookingTran" EntitySet="BookingTran" />
+    </AssociationSet>
+    <AssociationSet Name="fk_BookingSlotId" Association="Self.fk_BookingSlotId">
+      <End Role="Slots" EntitySet="Slots" />
+      <End Role="BookingTran" EntitySet="BookingTran" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingTran_CustomersID" Association="Self.FK_BookingTran_CustomersID">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="BookingTran" EntitySet="BookingTran" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

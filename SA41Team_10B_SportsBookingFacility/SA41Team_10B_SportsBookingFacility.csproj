@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB7CBA3C-A58D-4257-97C8-2F7147F78ABA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SA41Team_10B_SportsBookingFacility</RootNamespace>
+    <AssemblyName>SA41Team_10B_SportsBookingFacility</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SA41Team_10B_SportsBookingFacility.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="blankfacilityform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="blankfacilityform.Designer.cs">
+      <DependentUpon>blankfacilityform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookingDetailsForm.designer.cs">
+      <DependentUpon>BookingDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingGridData.cs" />
+    <Compile Include="BookingListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookingListForm.designer.cs">
+      <DependentUpon>BookingListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookingSearchForm.designer.cs">
+      <DependentUpon>BookingSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookingTran.cs">
+      <DependentUpon>SportsBookingFacilityContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookingTranBroker.cs" />
+    <Compile Include="BookingTranController.cs" />
+    <Compile Include="BookingTranLayer.cs" />
+    <Compile Include="CrossTabFacilityWeekDayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrossTabFacilityWeekDayForm.Designer.cs">
+      <DependentUpon>CrossTabFacilityWeekDayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrossTabFacilityWeekDayReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrossTabFacilityWeekDayReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>SportsBookingFacilityContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerBook.cs" />
+    <Compile Include="CustomerBroker.cs" />
+    <Compile Include="CustomerController.cs" />
+    <Compile Include="CustomerDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerDetailForm.designer.cs">
+      <DependentUpon>CustomerDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDetailsBlankForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerDetailsBlankForm.Designer.cs">
+      <DependentUpon>CustomerDetailsBlankForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerListForm.designer.cs">
+      <DependentUpon>CustomerListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facility.cs">
+      <DependentUpon>SportsBookingFacilityContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacilityBooking.cs" />
+    <Compile Include="FacilityBroker.cs" />
+    <Compile Include="FacilityDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacilityDetailForm.designer.cs">
+      <DependentUpon>FacilityDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacilityListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacilityListForm.designer.cs">
+      <DependentUpon>FacilityListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MemberReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MemberReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberReportForm.Designer.cs">
+      <DependentUpon>MemberReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewBookingForm.Designer.cs">
+      <DependentUpon>NewBookingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintForm.designer.cs">
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slot.cs">
+      <DependentUpon>SportsBookingFacilityContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SlotBooking.cs" />
+    <Compile Include="SlotBroker.cs" />
+    <Compile Include="SportsBookingFacilityContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportsBookingFacilityContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SportsBookingFacilityContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportsBookingFacilityContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SportsBookingFacilityContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SportsBookingFacilityContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrendByFacilityForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrendByFacilityForm1.Designer.cs">
+      <DependentUpon>TrendByFacilityForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrendByFacilityReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrendByFacilityReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="TrendByWeekDayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrendByWeekDayForm.Designer.cs">
+      <DependentUpon>TrendByWeekDayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrendByWeekDayReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrendByWeekDayReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <EmbeddedResource Include="blankfacilityform.resx">
+      <DependentUpon>blankfacilityform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingDetailsForm.resx">
+      <DependentUpon>BookingDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingListForm.resx">
+      <DependentUpon>BookingListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookingSearchForm.resx">
+      <DependentUpon>BookingSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossTabFacilityWeekDayForm.resx">
+      <DependentUpon>CrossTabFacilityWeekDayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossTabFacilityWeekDayReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrossTabFacilityWeekDayReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CustomToolNamespace>SA41Team_10B_SportsBookingFacility</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerDetailForm.resx">
+      <DependentUpon>CustomerDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerDetailsBlankForm.resx">
+      <DependentUpon>CustomerDetailsBlankForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerListForm.resx">
+      <DependentUpon>CustomerListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacilityDetailForm.resx">
+      <DependentUpon>FacilityDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacilityListForm.resx">
+      <DependentUpon>FacilityListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MemberReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CustomToolNamespace>SA41Team10b_Form</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberReportForm.resx">
+      <DependentUpon>MemberReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewBookingForm.resx">
+      <DependentUpon>NewBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintForm.resx">
+      <DependentUpon>PrintForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrendByFacilityForm1.resx">
+      <DependentUpon>TrendByFacilityForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrendByFacilityReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TrendByFacilityReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CustomToolNamespace>SA41Team_10B_SportsBookingFacility</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrendByWeekDayForm.resx">
+      <DependentUpon>TrendByWeekDayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrendByWeekDayReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TrendByWeekDayReport1.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CustomToolNamespace>SA41Team_10B_SportsBookingFacility</CustomToolNamespace>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="SportsBookingFacilityContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SportsBookingFacilityContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SportsBookingFacilityContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SportsBookingFacilityContext.edmx</DependentUpon>
+      <LastGenOutput>SportsBookingFacilityContext.Context.cs</LastGenOutput>
+    </None>
+    <None Include="SportsBookingFacilityContext.edmx.diagram">
+      <DependentUpon>SportsBookingFacilityContext.edmx</DependentUpon>
+    </None>
+    <None Include="SportsBookingFacilityContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SportsBookingFacilityContext.edmx</DependentUpon>
+      <LastGenOutput>SportsBookingFacilityContext.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

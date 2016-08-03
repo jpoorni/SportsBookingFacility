@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FacilityBookingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookingTran">
+          <Key>
+            <PropertyRef Name="FacilityId" />
+            <PropertyRef Name="SlotId" />
+            <PropertyRef Name="IssueDate" />
+          </Key>
+          <Property Name="FacilityId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="SlotId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="IssueDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="NRIC" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Custstatus" Type="bit" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="6" />
+          <Property Name="Phoneno" Type="nvarchar" MaxLength="8" />
+          <Property Name="Remarks" Type="nchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facilities">
+          <Key>
+            <PropertyRef Name="FacilityId" />
+          </Key>
+          <Property Name="FacilityId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Slots">
+          <Key>
+            <PropertyRef Name="SlotId" />
+          </Key>
+          <Property Name="SlotId" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="TimeSlot" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="fk_BookingFacilityId">
+          <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+          <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facilities">
+              <PropertyRef Name="FacilityId" />
+            </Principal>
+            <Dependent Role="BookingTran">
+              <PropertyRef Name="FacilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_BookingSlotId">
+          <End Role="Slots" Type="Self.Slots" Multiplicity="1" />
+          <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Slots">
+              <PropertyRef Name="SlotId" />
+            </Principal>
+            <Dependent Role="BookingTran">
+              <PropertyRef Name="SlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingTran_CustomersID">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="BookingTran">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FacilityBookingModelStoreContainer">
+          <EntitySet Name="BookingTran" EntityType="Self.BookingTran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facilities" EntityType="Self.Facilities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slots" EntityType="Self.Slots" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_BookingFacilityId" Association="Self.fk_BookingFacilityId">
+            <End Role="Facilities" EntitySet="Facilities" />
+            <End Role="BookingTran" EntitySet="BookingTran" />
+          </AssociationSet>
+          <AssociationSet Name="fk_BookingSlotId" Association="Self.fk_BookingSlotId">
+            <End Role="Slots" EntitySet="Slots" />
+            <End Role="BookingTran" EntitySet="BookingTran" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingTran_CustomersID" Association="Self.FK_BookingTran_CustomersID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BookingTran" EntitySet="BookingTran" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FacilityBookingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookingTran">
+          <Key>
+            <PropertyRef Name="FacilityId" />
+            <PropertyRef Name="SlotId" />
+            <PropertyRef Name="IssueDate" />
+          </Key>
+          <Property Name="FacilityId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SlotId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Facility" Relationship="Self.fk_BookingFacilityId" FromRole="BookingTran" ToRole="Facilities" />
+          <NavigationProperty Name="Slot" Relationship="Self.fk_BookingSlotId" FromRole="BookingTran" ToRole="Slots" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_BookingTran_CustomersID" FromRole="BookingTran" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NRIC" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Custstatus" Type="Boolean" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Phoneno" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookingTrans" Relationship="Self.FK_BookingTran_CustomersID" FromRole="Customers" ToRole="BookingTran" />
+        </EntityType>
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="FacilityId" />
+          </Key>
+          <Property Name="FacilityId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookingTrans" Relationship="Self.fk_BookingFacilityId" FromRole="Facilities" ToRole="BookingTran" />
+        </EntityType>
+        <EntityType Name="Slot">
+          <Key>
+            <PropertyRef Name="SlotId" />
+          </Key>
+          <Property Name="SlotId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeSlot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookingTrans" Relationship="Self.fk_BookingSlotId" FromRole="Slots" ToRole="BookingTran" />
+        </EntityType>
+        <Association Name="fk_BookingFacilityId">
+          <End Role="Facilities" Type="Self.Facility" Multiplicity="1" />
+          <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facilities">
+              <PropertyRef Name="FacilityId" />
+            </Principal>
+            <Dependent Role="BookingTran">
+              <PropertyRef Name="FacilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_BookingSlotId">
+          <End Role="Slots" Type="Self.Slot" Multiplicity="1" />
+          <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Slots">
+              <PropertyRef Name="SlotId" />
+            </Principal>
+            <Dependent Role="BookingTran">
+              <PropertyRef Name="SlotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingTran_CustomersID">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="BookingTran" Type="Self.BookingTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="BookingTran">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FacilityBookingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookingTrans" EntityType="Self.BookingTran" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Facilities" EntityType="Self.Facility" />
+          <EntitySet Name="Slots" EntityType="Self.Slot" />
+          <AssociationSet Name="fk_BookingFacilityId" Association="Self.fk_BookingFacilityId">
+            <End Role="Facilities" EntitySet="Facilities" />
+            <End Role="BookingTran" EntitySet="BookingTrans" />
+          </AssociationSet>
+          <AssociationSet Name="fk_BookingSlotId" Association="Self.fk_BookingSlotId">
+            <End Role="Slots" EntitySet="Slots" />
+            <End Role="BookingTran" EntitySet="BookingTrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingTran_CustomersID" Association="Self.FK_BookingTran_CustomersID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BookingTran" EntitySet="BookingTrans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FacilityBookingModelStoreContainer" CdmEntityContainer="FacilityBookingEntities">
+          <EntitySetMapping Name="BookingTrans">
+            <EntityTypeMapping TypeName="FacilityBookingModel.BookingTran">
+              <MappingFragment StoreEntitySet="BookingTran">
+                <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+                <ScalarProperty Name="SlotId" ColumnName="SlotId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="FacilityBookingModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NRIC" ColumnName="NRIC" />
+                <ScalarProperty Name="Custstatus" ColumnName="Custstatus" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Phoneno" ColumnName="Phoneno" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facilities">
+            <EntityTypeMapping TypeName="FacilityBookingModel.Facility">
+              <MappingFragment StoreEntitySet="Facilities">
+                <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slots">
+            <EntityTypeMapping TypeName="FacilityBookingModel.Slot">
+              <MappingFragment StoreEntitySet="Slots">
+                <ScalarProperty Name="SlotId" ColumnName="SlotId" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
